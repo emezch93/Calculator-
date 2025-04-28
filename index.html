@@ -40,7 +40,7 @@
         button {
             width: 60px;
             height: 60px;
-            font-size: 20px;
+            font-size: 35px;
             border: none;
             background: #444;
             color: white;
@@ -51,52 +51,131 @@
         button:hover {
             background: #666;
         }
-  
+        .Clr{
+  color: orangered;
+        }
+        .opr{
+  color: goldenrod;
+  font-size: 45px;
+}
+#equal{
+  font-size: 50px;
+color: green;
+}
+.opt{
+  color: purple;
+clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%);
+width: 88%;
+height: 100%;
+}
+
     </style>
 </head>
 <body>
+  
+
 
     <div class="calculator">
-        <input type="text" class="screen" id="screen" disabled>
+       <input type= "text" class="screen" id="screen" contenteditable="true" placeholder="Input value" readonly>
+       <br><br>
         <div class="buttons">
-            <button onclick="clearScreen()">C</button>
-            <button onclick="appendValue('/')">/</button>
-            <button onclick="appendValue('*')">*</button>
-            <button onclick="appendValue('-')">-</button>
-
+    
+        
+            <button class="Clr" onclick="clearScreen()">C</button>
+               
+            <button class="opr" onclick="appendValue('/')">/</button>
+            
+                
+            <button class="opr" onclick="appendValue('*')">*</button>
+            
+                <button class="opt" id="cancelBtn">✖</button>
+                
             <button onclick="appendValue('7')">7</button>
             <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('+')">+</button>
-
+            
+              <button onclick="appendValue('9')">9</button>
+            
+            
+                
+                
+               
+          
+            
+                <button class="opr" onclick="appendValue('+')">+</button>
+            
             <button onclick="appendValue('4')">4</button>
+            
+                  
             <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="calculateResult()">=</button>
+            
+               <button onclick="appendValue('6')">6</button>
+               
+              <button class="opr" onclick="appendValue('-')">-</button>
 
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('0')">0</button>
+               
+                 <button onclick="appendValue('1')">1</button>
+                 
+                                         <button onclick="appendValue('2')">2</button>
+                                         
+               <button onclick="appendValue('3')">3</button>
+        
+                 
+               <button onclick="appendValue(')')" >)</button>
+         
+         
+            
+          
+          
+
+  <button onclick="appendValue('.')">.</button>
+               
+               
+          
+               <button onclick="appendValue('(')" >(</button>     
+          
+          
+            
+
+                   <button onclick="appendValue('0')">0</button>
+               
+                   <button id="equal">=</button>
+
+            
+            
         </div>
-    </div>
   
     <script>
-        function appendValue(value) {
-            document.getElementById("screen").value += value;
-        }
+  let screen = document.getElementById("screen"); // Get the screen input
 
-        function calculateResult() {
-            try {
-                document.getElementById("screen").value = eval(document.getElementById("screen").value);
-            } catch {
-                alert("Invalid Calculation");
-            }
-        }
+function appendValue(value) {
+  screen.value += value;  // Add value to the screen
+}
 
-        function clearScreen() {
-            document.getElementById("screen").value = "";
-        }
+function calculateResult() {
+  try {
+    screen.value = eval(screen.value);  // Evaluate and display result
+  } catch (error) {
+    screen.value = "Error";  // Show Error if expression is wrong
+  }
+}
+
+document.getElementById("equal").addEventListener("click", calculateResult);
+
+
+function clearScreen() {
+  screen.value = "";  // Clear everything
+}
+
+        
+        
+     const display = document.getElementById('screen');
+const cancelBtn = document.getElementById('cancelBtn');
+
+cancelBtn.addEventListener('click', function() {
+    display.value = display.value.slice(0, -1);
+});
+
+        
     </script>
 </body>
 </html>
